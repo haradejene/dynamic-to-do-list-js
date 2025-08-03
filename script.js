@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
+    
     function addTask() {
         const taskText = taskInput.value.trim();
         
@@ -13,27 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const listItem = document.createElement('li');
+        listItem.textContent = taskText;
         
-        const taskSpan = document.createElement('span');
-        taskSpan.textContent = taskText;
-
+        
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
-        removeButton.className = 'remove-btn';
-    
-        removeButton.addEventListener('click', function() {
-            taskList.removeChild(listItem);
-        });
+        removeButton.classList.add('remove-btn'); 
         
-        listItem.appendChild(taskSpan);
+        removeButton.onclick = function() {
+            taskList.removeChild(listItem);
+        };
+        
         listItem.appendChild(removeButton);
-    
+        
         taskList.appendChild(listItem);
         
         taskInput.value = '';
-        taskInput.focus();
     }
 
+    
     addButton.addEventListener('click', addTask);
     
     taskInput.addEventListener('keypress', function(event) {
